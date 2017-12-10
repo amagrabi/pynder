@@ -46,11 +46,11 @@ class User(Model):
 
     @property
     def common_likes(self):
-        return [p for p in self._data['common_likes']]
+        return [p for p in self._data.get('common_likes', [])]
 
     @property
     def common_connections(self):
-        return [p for p in self._data['common_friends']]
+        return [p for p in self._data.get('common_friends', [])]
 
     @property
     def thumbnails(self):

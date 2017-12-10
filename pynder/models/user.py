@@ -109,7 +109,7 @@ class User(Model):
     def like(self, user):
         content_hash = user._data.get('content_hash')
         s_number = user._data.get('s_number')
-        return self._post("/like/{}?content_hash=\"{}\"&s_number=\"{}\"".format(user, content_hash, s_number))
+        return self._get("/like/{}?content_hash=\"{}\"&s_number=\"{}\"".format(user, content_hash, s_number))
 
     def superlike(self, user):
         content_hash = user._data.get('content_hash')
@@ -119,7 +119,7 @@ class User(Model):
     def dislike(self, user):
         content_hash = user._data.get('content_hash')
         s_number = user._data.get('s_number')
-        return self._post("/pass/{}?content_hash=\"{}\"&s_number=\"{}\"".format(user, content_hash, s_number))
+        return self._get("/pass/{}?content_hash=\"{}\"&s_number=\"{}\"".format(user, content_hash, s_number))
 
 
 class RateLimited(User):

@@ -31,7 +31,7 @@ class Session(object):
             users = response['results'] if 'results' in response else []
             for user in users:
                 if not user["user"]["_id"].startswith("tinder_rate_limited_id_"):
-                    yield User(["user"], self)
+                    yield User(user["user"], self)
                 else:
                     yield RateLimited(user, self)
             if not len(users):

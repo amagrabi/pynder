@@ -106,13 +106,19 @@ class User(Model):
             raise ValueError("Unsupported width")
         return itertools.chain.from_iterable([[processed_photo['url'] for processed_photo in photo.get("processedFiles", []) if processed_photo['width'] == int(width)] for photo in self._photos])
 
-    def like(self, user, content_hash, s_number):
+    def like(self, user):
+        content_hash = user._data.get('content_hash')
+        s_number = user._data.get('s_number')
         return self._get("/like/{}?content_hash=\"{}\"&s_number=\"{}\"".format(user, content_hash, s_number))
 
-    def superlike(self, user, content_hash, s_number):
+    def superlike(self, user):
+        content_hash = user._data.get('content_hash')
+        s_number = user._data.get('s_number')
         return self._post("/like/{}/super".format(user), {"content_hash": content_hash, "s_number": s_number})
 
-    def dislike(self, user, content_hash, s_number):
+    def dislike(self, user):
+        content_hash = user._data.get('content_hash')
+        s_number = user._data.get('s_number')
         return self._get("/pass/{}?content_hash=\"{}\"&s_number=\"{}\"".format(user, content_hash, s_number))
 
 
